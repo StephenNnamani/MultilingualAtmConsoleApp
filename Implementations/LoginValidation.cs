@@ -2,7 +2,7 @@
 using AtmConsoleAppInThreeLanguages.Enums;
 using AtmConsoleAppInThreeLanguages.Properties;
 using AtmConsoleAppInThreeLanguages.Transactions;
-using System.Collections.Generic;
+using System.Security.Principal;
 
 namespace AtmConsoleAppInThreeLanguages.Implementations
 {
@@ -14,7 +14,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         private static string Options { get; set; }
         private static int userInput { get; set; }
 
-        public void LoginVal()
+        public LoginValidation()
         {
             _userAccountList = new List<UserAccount>()
             {
@@ -41,8 +41,24 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                     FullName = "John Kennedy",
                     Bank = "Access Bank",
                     Location = "San Francisco, America"
+                },new UserAccount()
+                {
+                    UserId = 3,
+                    CardPin = 565656,
+                    CardNumber = 656565,
+                    AccountNumber = 123456789,
+                    AccountBalance = 600000000,
+                    AccountName = "Kingsley",
+                    FullName = "Kingsley Somtoo",
+                    Bank = "Daimond Bank",
+                    Location = "Japan"
                 }
             };
+        }
+
+        public void LoginVal()
+        {
+           
             try 
             {
                 Welcome.Message("\nPlease:\t", "Enter you details for security purposes\n");
@@ -57,7 +73,11 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                     var userCardPin = account.CardPin;
                     if (userAccountNumber == _userAccountNumberInput && _userCardPin == userCardPin)
                     {
-                        getUser(account, userAccountNumber);
+                        while (true)
+                        {
+                            getUser(account, userAccountNumber);
+                            break;
+                        }
                     }
                    /* else
                         {
@@ -75,6 +95,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                 LoginVal();
             }
         }
+
 
         private static void getUser(UserAccount? account, int userAccountNumber)
         {
@@ -95,22 +116,24 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                         ChooseTransaction.Withdrawal(userAccountNumber, account.AccountBalance, account.FullName);
                         break;
                     case (int)TransactionType.Transfer:
-                        ChooseTransaction.Transfer(account.AccountNumber, account.AccountBalance, account.AccountBalance, account.AccountNumber, account.FullName, account.FullName);
+                        ChooseTransaction.Transfer(account.FullName, account.AccountBalance, account.AccountNumber);
                         break;
                     case (int)TransactionType.CheckBalance:
                         ChooseTransaction.CheckBalance(account.AccountBalance, account.FullName);
                         break;
                     default:
-                        Console.WriteLine("Enter value is not in the case");
+                        Console.WriteLine("Entered value is not in the case");
                         break;
                 }
-
+                
             }
             catch (Exception exception)
             {
                 Welcome.Message("\nError:\t", exception.Message);
             }
         }
+
+    
 
     }
 }
