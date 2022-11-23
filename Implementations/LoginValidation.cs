@@ -2,7 +2,6 @@
 using AtmConsoleAppInThreeLanguages.Enums;
 using AtmConsoleAppInThreeLanguages.Properties;
 using AtmConsoleAppInThreeLanguages.Transactions;
-using System.Security.Principal;
 
 namespace AtmConsoleAppInThreeLanguages.Implementations
 {

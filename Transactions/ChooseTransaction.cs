@@ -100,7 +100,7 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
         
 
                 Console.WriteLine("Enter Amount");
-                int AmountToTransfer = Convert.ToInt32(Console.ReadLine());
+                decimal AmountToTransfer = Convert.ToDecimal(Console.ReadLine());
                 Console.WriteLine("Enter Your Account Number");
 
                 int ReceiverAccountNumberInput = Convert.ToInt32(Console.ReadLine());
@@ -119,12 +119,11 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                     Console.WriteLine($"{SenderFullName} you just sent {AmountToTransfer} to {currentUser.FullName} and {AmountToTransfer} has been depisted from your account");
                     Welcome.Message($"\n{SenderFullName} Your new balance is",  $"{ SenderAccountBalance}");
                     }
-                LoginValidation.getUser(user, user.AccountNumber);
+                /*LoginValidation.getUser(user, user.AccountNumber);*/
             }
             }
             catch (Exception exception)
             {
-
                 Welcome.Message("\nError:", $"{exception.Message}");
 
             }
