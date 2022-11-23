@@ -5,7 +5,7 @@ using AtmConsoleAppInThreeLanguages.Transactions;
 
 namespace AtmConsoleAppInThreeLanguages.Implementations
 {
-    internal class LoginValidation
+    internal class LoginValidationInIgbo
     {
         public List<UserAccount> _userAccountList;
         private int _userAccountNumberInput;
@@ -13,7 +13,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         private static string Options { get; set; }
         private static int userInput { get; set; }
 
-        public LoginValidation()
+        public LoginValidationInIgbo()
         {
             _userAccountList = new List<UserAccount>()
             {
@@ -57,13 +57,13 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
         public void LoginVal()
         {
-           
-            try 
+
+            try
             {
-                Welcome.Message("\nPlease:\t", "Enter you details for security purposes\n");
-                Welcome.Message("\nPlease:\t", "Enter you Account Number\n");
+                Welcome.Message("\nBiko:\t", "Tinwe ngiri mara gi maka mgbochi accounti gi.\n");
+                Welcome.Message("\nBiko:\t", "Tinwe account number gi\n");
                 _userAccountNumberInput = int.Parse(Console.ReadLine());
-                Welcome.Message("\nPlease:\t", "Enter you CardPin\n");
+                Welcome.Message("\nBiko:\t", "Tinew CardPin gi.\n");
                 _userCardPin = int.Parse(Console.ReadLine());
 
                 foreach (var account in _userAccountList)
@@ -78,18 +78,18 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                             break;
                         }
                     }
-                   /* else
-                        {
-                            Console.Clear();
-                            Welcome.Message("\nError:\t", "User does'nt Exist");
-                            LoginVal();
-                        }*/
+                    /* else
+                         {
+                             Console.Clear();
+                             Welcome.Message("\nError:\t", "User does'nt Exist");
+                             LoginVal();
+                         }*/
                 }
             }
             catch (Exception exception)
             {
                 Console.Clear();
-                Welcome.Message("\nPlease:\t", "Enter A valid inputs\n");
+                Welcome.Message("\nBiko:\t", "Tinwe number mara mma\n");
                 Console.WriteLine(exception.Message);
                 LoginVal();
             }
@@ -98,7 +98,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
         public static void getUser(UserAccount? account, int userAccountNumber)
         {
-            ChooseTransaction.ChooseTransactionType(account.AccountName);
+            ChooseTransactionTypeIgbo.ChooseTransactionType(account.AccountName);
 
             try
             {
@@ -109,30 +109,30 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                 {
 
                     case (int)TransactionType.Deposit:
-                        ChooseTransaction.Deposit(userAccountNumber, account.AccountBalance, account.FullName);
+                        ChooseTransactionTypeIgbo.Deposit(userAccountNumber, account.AccountBalance, account.FullName);
                         break;
                     case (int)TransactionType.Widthdrawal:
-                        ChooseTransaction.Withdrawal(userAccountNumber, account.AccountBalance, account.FullName);
+                        ChooseTransactionTypeIgbo.Withdrawal(account.AccountBalance, account.FullName);
                         break;
                     case (int)TransactionType.Transfer:
-                        ChooseTransaction.Transfer(account.FullName, account.AccountBalance, account.AccountNumber);
+                        ChooseTransactionTypeIgbo.Transfer(account.FullName, account.AccountBalance, account.AccountNumber);
                         break;
                     case (int)TransactionType.CheckBalance:
-                        ChooseTransaction.CheckBalance(account.AccountBalance, account.FullName);
+                        ChooseTransactionTypeIgbo.CheckBalance(account.AccountBalance, account.FullName);
                         break;
                     default:
-                        Console.WriteLine("Entered value is not in the case");
+                        Console.WriteLine("Ife i tinwere adiro nah list");
                         break;
                 }
-                
+
             }
             catch (Exception exception)
             {
-                Welcome.Message("\nError:\t", exception.Message);
+                Welcome.Message("\nNjehie:\t", exception.Message);
             }
         }
 
-    
+
 
     }
 }

@@ -8,7 +8,7 @@ namespace AtmConsoleAppInThreeLanguages
         public static void CallEnglishLanguageImplementations()
         {
             Welcome.Message("\nHello Awesome Person\t", "Your are welcome.\n\n");
-            LoginValidation loginValidation = new LoginValidation();
+            LoginValInEnglish loginValidation = new LoginValInEnglish();
             loginValidation.LoginVal();
 
         }

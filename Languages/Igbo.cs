@@ -1,4 +1,5 @@
 ﻿using ATMCONSOLEAPPINTHREELANGUAGE;
+using AtmConsoleAppInThreeLanguages.Implementations;
 
 namespace AtmConsoleAppInThreeLanguages.Languages
 {
@@ -7,6 +8,8 @@ namespace AtmConsoleAppInThreeLanguages.Languages
         public static void CallIgboLanguageImplementations()
         {
             Welcome.Message("\nDaalu", "Ezigbo mmadu\n\n");
+            LoginValidationInIgbo Validation = new();
+            Validation.LoginVal();
         }
     }
 }
