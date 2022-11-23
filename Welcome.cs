@@ -1,11 +1,6 @@
 ﻿using AtmConsoleAppInThreeLanguages;
 using AtmConsoleAppInThreeLanguages.Enums;
 using AtmConsoleAppInThreeLanguages.Languages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATMCONSOLEAPPINTHREELANGUAGE
 {

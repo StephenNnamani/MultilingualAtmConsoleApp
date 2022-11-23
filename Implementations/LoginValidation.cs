@@ -97,7 +97,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         }
 
 
-        private static void getUser(UserAccount? account, int userAccountNumber)
+        public static void getUser(UserAccount? account, int userAccountNumber)
         {
             ChooseTransaction.ChooseTransactionType(account.AccountName);
 

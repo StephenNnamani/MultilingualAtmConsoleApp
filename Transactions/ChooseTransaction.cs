@@ -1,6 +1,5 @@
 ﻿using ATMCONSOLEAPPINTHREELANGUAGE;
 using AtmConsoleAppInThreeLanguages.Implementations;
-using AtmConsoleAppInThreeLanguages.Properties;
 
 namespace AtmConsoleAppInThreeLanguages.Transactions
 {
@@ -120,9 +119,8 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                     Console.WriteLine($"{SenderFullName} you just sent {AmountToTransfer} to {currentUser.FullName} and {AmountToTransfer} has been depisted from your account");
                     Welcome.Message($"\n{SenderFullName} Your new balance is",  $"{ SenderAccountBalance}");
                     }
-                    break;
+                LoginValidation.getUser(user, user.AccountNumber);
             }
-
             }
             catch (Exception exception)
             {
