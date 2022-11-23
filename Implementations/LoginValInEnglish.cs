@@ -111,7 +111,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                     case (int)TransactionType.Deposit:
                         ChooseTransactionTypeEnglish.Deposit(userAccountNumber, account.AccountBalance, account.FullName);
                         break;
-                    case (int)TransactionType.Widthdrawal:
+                    case (int)TransactionType.Withdrawal:
                         ChooseTransactionTypeEnglish.Withdrawal(userAccountNumber, account.AccountBalance, account.FullName);
                         break;
                     case (int)TransactionType.Transfer:

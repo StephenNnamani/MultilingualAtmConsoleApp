@@ -40,18 +40,8 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
 
                 Console.WriteLine("Tinwe amount ichoro itinwe na account gi");
                 int AmountToDeposit = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Tinwe account number gi");
-
-                int DepositAccountNumber = Convert.ToInt32(Console.ReadLine());
-                if (AccountNumber.Equals(DepositAccountNumber))
-                {
                     decimal newBalance = AccountBalance + AmountToDeposit;
                     Welcome.Message($"\n{AccountFullName}\t", $"Itinwego {AmountToDeposit} na account gi. Balance gi kita bu\t : {newBalance}");
-                }
-                else
-                {
-                    Welcome.Message("\nt", "Biko megaria ya ozo\n");
-                }
             }
             catch (Exception errorException)
             {

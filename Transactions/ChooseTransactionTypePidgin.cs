@@ -41,18 +41,8 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
 
                 Console.WriteLine("Gee put Amount");
                 int AmountToDeposit = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Put Account Number");
-
-                int DepositAccountNumber = Convert.ToInt32(Console.ReadLine());
-                if (AccountNumber.Equals(DepositAccountNumber))
-                {
                     decimal newBalance = AccountBalance + AmountToDeposit;
                     Welcome.Message($"\n{AccountFullName}\t", $"You deposited {AmountToDeposit} in your account. Your new balance nah\t : {newBalance} ");
-                }
-                else
-                {
-                    Welcome.Message("\nError:\t", "Try Again\n");
-                }
             }
             catch (Exception errorException)
             {
@@ -69,9 +59,6 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
 
                 Console.WriteLine("Enter Amount");
                 int amountToWidthraw = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter Your Account Number");
-
-                int DepositAccountNumber = Convert.ToInt32(Console.ReadLine());
                     decimal newBalance = AccountBalance -= amountToWidthraw;
                     Welcome.Message($"\n{AccountFullName}\t", $"You just removed {amountToWidthraw} for your account, your new balance nah:\t {newBalance} ");
             }

@@ -99,7 +99,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
             public static void getUser(UserAccount? account, int userAccountNumber)
             {
-            ChooseTransactionTypeIgbo.ChooseTransactionType(account.AccountName);
+            ChooseTransactionTypePidgin.ChooseTransactionType(account.AccountName);
 
                 try
                 {
@@ -110,16 +110,16 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                     {
 
                         case (int)TransactionType.Deposit:
-                        ChooseTransactionTypeIgbo.Deposit(userAccountNumber, account.AccountBalance, account.FullName);
+                        ChooseTransactionTypePidgin.Deposit(userAccountNumber, account.AccountBalance, account.FullName);
                             break;
-                        case (int)TransactionType.Widthdrawal:
-                        ChooseTransactionTypeIgbo.Withdrawal(account.AccountBalance, account.FullName);
+                        case (int)TransactionType.Withdrawal:
+                        ChooseTransactionTypePidgin.Withdrawal(account.AccountBalance, account.FullName);
                             break;
                         case (int)TransactionType.Transfer:
-                        ChooseTransactionTypeIgbo.Transfer(account.FullName, account.AccountBalance, account.AccountNumber);
+                        ChooseTransactionTypePidgin.Transfer(account.FullName, account.AccountBalance, account.AccountNumber);
                             break;
                         case (int)TransactionType.CheckBalance:
-                            ChooseTransactionTypeIgbo.CheckBalance(account.AccountBalance, account.FullName);
+                            ChooseTransactionTypePidgin.CheckBalance(account.AccountBalance, account.FullName);
                             break;
                         default:
                             Console.WriteLine("Abeg put better case");
