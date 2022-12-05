@@ -19,51 +19,51 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
 
         public static void CheckBalance(decimal accountBalance, string userfullName)
         {
-    
-                Console.WriteLine($"{userfullName} Gee your new balance nah {accountBalance}");
-        
+
+            Console.WriteLine($"{userfullName} Gee your new balance nah {accountBalance}");
+
         }
 
         public static void Deposit(int AccountNumber, decimal AccountBalance, string AccountFullName)
         {
 
-            try
+        start: try
             {
 
                 Console.WriteLine("Gee put Amount");
                 int AmountToDeposit = Convert.ToInt32(Console.ReadLine());
-                    decimal newBalance = AccountBalance + AmountToDeposit;
+                decimal newBalance = AccountBalance + AmountToDeposit;
                 Program.Message($"\n{AccountFullName}\t", $"You deposited {AmountToDeposit} in your account. Your new balance nah\t : {newBalance} ");
             }
             catch (Exception errorException)
             {
 
                 Program.Message("\nError:\t", $"{errorException.Message}");
-                return;
+                goto start;
             }
         }
         public static void Withdrawal(decimal AccountBalance, string AccountFullName)
         {
-
+            Starting:
             try
             {
 
                 Console.WriteLine("Enter Amount");
                 int amountToWidthraw = Convert.ToInt32(Console.ReadLine());
-                    decimal newBalance = AccountBalance -= amountToWidthraw;
+                decimal newBalance = AccountBalance -= amountToWidthraw;
                 Program.Message($"\n{AccountFullName}\t", $"You just removed {amountToWidthraw} for your account, your new balance nah:\t {newBalance} ");
             }
             catch (Exception errorException)
             {
 
                 Program.Message("\nError:\t", $"{errorException.Message}");
-                return;
+                goto Starting;
             }
         }
 
         public static void Transfer(string SenderFullName, decimal SenderAccountBalance, int SenderAccountNumber)
         {
-            try
+        StartFromBegining: try
             {
                 LoginValInEnglish loginValidation = new LoginValInEnglish();
                 var account = loginValidation._userAccountList;
@@ -98,10 +98,10 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
             catch (Exception exception)
             {
                 Program.Message("\nProblem:", $"{exception.Message}");
-
+                goto StartFromBegining;
             }
         }
-       
+
     }
 }
 

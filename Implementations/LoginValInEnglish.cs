@@ -13,6 +13,13 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         private static string? Options { get; set; }
         private static int UserInput { get; set; }
 
+        /// <summary>
+        /// Action delegates for printing messages to user
+        /// </summary>
+        private event Action<string>? ErrorMessage;
+        private event Action<string>? SuccessMessage;
+
+
         public LoginValInEnglish()
         {
             _userAccountList = new List<UserAccount>()
@@ -62,28 +69,26 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
             {
                 Program.Message("\nPlease:\t", "Enter you details for security purposes\n");
                 Program.Message("\nPlease:\t", "Enter you Account Number\n");
-                _userAccountNumberInput = int.Parse(Console.ReadLine());
-                Program.Message("\nPlease:\t", "Enter you CardPin\n");
-                _userCardPin = int.Parse(Console.ReadLine());
+                _userAccountNumberInput = int.Parse(Console.ReadLine() ?? string.Empty);
+                Program.Message("\nPlease:\t", "Enter you CardPin\n");  
+                _userCardPin = int.Parse(Console.ReadLine() ?? string.Empty);
 
-                foreach (var account in _userAccountList)
+                var unicUser = _userAccountList.FirstOrDefault(user => user.AccountNumber == _userAccountNumberInput);
+                if (unicUser == null)
                 {
-                    var userAccountNumber = account.AccountNumber;
-                    var userCardPin = account.CardPin;
-                    if (userAccountNumber == _userAccountNumberInput && _userCardPin == userCardPin)
-                    {
-                        while (true)
-                        {
-                            getUser(account, userAccountNumber);
-                            break;
-                        }
-                    }
-                   /* else
-                        {
-                            Console.Clear();
-                            Welcome.Message("\nError:\t", "User does'nt Exist");
-                            LoginVal();
-                        }*/
+                    Console.Clear();
+                    Program.Message("\nError:\t", "User does'nt Exist");
+                    LoginVal();
+                }
+                if (unicUser?.CardPin != _userCardPin)
+                {
+                    Program.Message("User does not exist", "Please try again");
+                    LoginVal();
+                }
+                while (true)
+                {
+                    getUser(unicUser, unicUser.AccountNumber);
+                    break;
                 }
             }
             catch (Exception exception)
@@ -96,9 +101,11 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         }
 
 
-        public static void getUser(UserAccount? account, int userAccountNumber)
+        public static void getUser(UserAccount account, int userAccountNumber)
         {
-            ChooseTransactionTypeEnglish.ChooseTransactionType(account.AccountName);
+            LoginValInEnglish ValEnglish = new();
+
+        start: ChooseTransactionTypeEnglish.ChooseTransactionType(account.AccountName);
 
             try
             {
@@ -121,18 +128,22 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                         ChooseTransactionTypeEnglish.CheckBalance(account.AccountBalance, account.FullName);
                         break;
                     default:
-                        Console.WriteLine("Entered value is not in the case");
+                        /*Console.WriteLine("Entered value is not in the case");*/
+                        ValEnglish.OnError("Error Message from Action custom delegate");
                         break;
                 }
-                
+
             }
             catch (Exception exception)
             {
                 Program.Message("\nError:\t", exception.Message);
+                ValEnglish.OnError("Error Message from Action custom delegate");
+                goto start;
             }
         }
 
-    
+        public void LogError(Action<string> method) => ErrorMessage += method;
 
+        public void OnError(string message) => ErrorMessage(message);
     }
 }
