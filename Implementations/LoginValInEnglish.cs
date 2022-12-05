@@ -10,8 +10,8 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         public List<UserAccount> _userAccountList;
         private int _userAccountNumberInput;
         private int _userCardPin;
-        private static string Options { get; set; }
-        private static int userInput { get; set; }
+        private static string? Options { get; set; }
+        private static int UserInput { get; set; }
 
         public LoginValInEnglish()
         {
@@ -57,13 +57,13 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
         public void LoginVal()
         {
-           
-            try 
+
+            try
             {
-                Welcome.Message("\nPlease:\t", "Enter you details for security purposes\n");
-                Welcome.Message("\nPlease:\t", "Enter you Account Number\n");
+                Program.Message("\nPlease:\t", "Enter you details for security purposes\n");
+                Program.Message("\nPlease:\t", "Enter you Account Number\n");
                 _userAccountNumberInput = int.Parse(Console.ReadLine());
-                Welcome.Message("\nPlease:\t", "Enter you CardPin\n");
+                Program.Message("\nPlease:\t", "Enter you CardPin\n");
                 _userCardPin = int.Parse(Console.ReadLine());
 
                 foreach (var account in _userAccountList)
@@ -89,7 +89,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
             catch (Exception exception)
             {
                 Console.Clear();
-                Welcome.Message("\nPlease:\t", "Enter A valid inputs\n");
+                Program.Message("\nPlease:\t", "Enter A valid inputs\n");
                 Console.WriteLine(exception.Message);
                 LoginVal();
             }
@@ -104,8 +104,8 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
             {
                 Options = Console.ReadLine();
 
-                userInput = Convert.ToInt32(Options);
-                switch (userInput)
+                UserInput = Convert.ToInt32(Options);
+                switch (UserInput)
                 {
 
                     case (int)TransactionType.Deposit:
@@ -128,7 +128,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
             }
             catch (Exception exception)
             {
-                Welcome.Message("\nError:\t", exception.Message);
+                Program.Message("\nError:\t", exception.Message);
             }
         }
 

@@ -8,11 +8,11 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
         public static void ChooseTransactionType(string usersAccountName)
         {
 
-            Welcome.Message($"Welcome {usersAccountName}\n\t", "Tinwe number mbu, abou ma obu ito (1-3) \n");
-            Welcome.Message("\t\t1.\t", "Tinwe ego na account gi\n");
-            Welcome.Message("\t\t2.\t", "Ichoro iwoputa ego gi\n");
-            Welcome.Message("\t\t3.\t", "Ka obu izipu ego ki choro\n");
-            Welcome.Message("\t\t4.\t", "Ka ichoro ima ego ka di na account gi.");
+            Program.Message($"Welcome {usersAccountName}\n\t", "Tinwe number mbu, abou ma obu ito (1-3) \n");
+            Program.Message("\t\t1.\t", "Tinwe ego na account gi\n");
+            Program.Message("\t\t2.\t", "Ichoro iwoputa ego gi\n");
+            Program.Message("\t\t3.\t", "Ka obu izipu ego ki choro\n");
+            Program.Message("\t\t4.\t", "Ka ichoro ima ego ka di na account gi.");
 
         }
 
@@ -41,12 +41,12 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                 Console.WriteLine("Tinwe amount ichoro itinwe na account gi");
                 int AmountToDeposit = Convert.ToInt32(Console.ReadLine());
                     decimal newBalance = AccountBalance + AmountToDeposit;
-                    Welcome.Message($"\n{AccountFullName}\t", $"Itinwego {AmountToDeposit} na account gi. Balance gi kita bu\t : {newBalance}");
+                Program.Message($"\n{AccountFullName}\t", $"Itinwego {AmountToDeposit} na account gi. Balance gi kita bu\t : {newBalance}");
             }
             catch (Exception errorException)
             {
 
-                Welcome.Message("\nError:\t", $"{errorException.Message}");
+                Program.Message("\nError:\t", $"{errorException.Message}");
                 return;
             }
         }
@@ -59,12 +59,12 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                 Console.WriteLine("Tinwe Amount ichoro iwepu na account gi");
                 int amountToWidthraw = Convert.ToInt32(Console.ReadLine());
                     decimal newBalance = AccountBalance -= amountToWidthraw;
-                    Welcome.Message($"\n{AccountFullName}\t", $"Iwepu go {amountToWidthraw} na account gi, Ife di na account gi kita bu:\t {newBalance} ");
+                Program.Message($"\n{AccountFullName}\t", $"Iwepu go {amountToWidthraw} na account gi, Ife di na account gi kita bu:\t {newBalance} ");
             }
             catch (Exception errorException)
             {
 
-                Welcome.Message("\nError:\t", $"\n: Biko tinwe ife ziri ezi {errorException.Message}");
+                Program.Message("\nError:\t", $"\n: Biko tinwe ife ziri ezi {errorException.Message}");
                 return;
             }
         }
@@ -98,14 +98,14 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                         currentUser.AccountBalance += AmountToTransfer;
                         SenderAccountBalance -= AmountToTransfer;
                         Console.WriteLine($"{SenderFullName} Izi puru {AmountToTransfer} zigara {currentUser.FullName}. {AmountToTransfer} a pu go  na account gi");
-                        Welcome.Message($"\n{SenderFullName} Ego foro na account gi bu", $"{SenderAccountBalance}");
+                        Program.Message($"\n{SenderFullName} Ego foro na account gi bu", $"{SenderAccountBalance}");
                     }
                     LoginValidationInPidgin.getUser(user, user.AccountNumber);
                 }
             }
             catch (Exception exception)
             {
-                Welcome.Message("\n Nzogbu di:", $"{exception.Message}");
+                Program.Message("\n Nzogbu di:", $"{exception.Message}");
 
             }
         }

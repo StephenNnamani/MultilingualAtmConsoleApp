@@ -60,10 +60,10 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
             try
             {
-                Welcome.Message("\nBiko:\t", "Tinwe ngiri mara gi maka mgbochi accounti gi.\n");
-                Welcome.Message("\nBiko:\t", "Tinwe account number gi\n");
+                Program.Message("\nBiko:\t", "Tinwe ngiri mara gi maka mgbochi accounti gi.\n");
+                Program.Message("\nBiko:\t", "Tinwe account number gi\n");
                 _userAccountNumberInput = int.Parse(Console.ReadLine());
-                Welcome.Message("\nBiko:\t", "Tinew CardPin gi.\n");
+                Program.Message("\nBiko:\t", "Tinew CardPin gi.\n");
                 _userCardPin = int.Parse(Console.ReadLine());
 
                 foreach (var account in _userAccountList)
@@ -89,7 +89,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
             catch (Exception exception)
             {
                 Console.Clear();
-                Welcome.Message("\nBiko:\t", "Tinwe number mara mma\n");
+                Program.Message("\nBiko:\t", "Tinwe number mara mma\n");
                 Console.WriteLine(exception.Message);
                 LoginVal();
             }
@@ -128,7 +128,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
             }
             catch (Exception exception)
             {
-                Welcome.Message("\nNjehie:\t", exception.Message);
+                Program.Message("\nNjehie:\t", exception.Message);
             }
         }
 

@@ -8,11 +8,11 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
         public static void ChooseTransactionType(string usersAccountName)
         {
 
-            Welcome.Message($"Welcome {usersAccountName}\n\t", "Choose 1-3 for your preffered transactions\n");
-            Welcome.Message("\t\t1.\t", "Deposit\n");
-            Welcome.Message("\t\t2.\t", "Withdrawal\n");
-            Welcome.Message("\t\t.3\t", "Transfer\n");
-            Welcome.Message("\t\t4.\t", "Check Balance\n");
+            Program.Message($"Welcome {usersAccountName}\n\t", "Choose 1-3 for your preffered transactions\n");
+            Program.Message("\t\t1.\t", "Deposit\n");
+            Program.Message("\t\t2.\t", "Withdrawal\n");
+            Program.Message("\t\t.3\t", "Transfer\n");
+            Program.Message("\t\t4.\t", "Check Balance\n");
 
         }
 
@@ -46,17 +46,17 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                 if (AccountNumber.Equals(DepositAccountNumber))
                 {
                     decimal newBalance = AccountBalance + AmountToDeposit;
-                    Welcome.Message($"\n{AccountFullName}\t", $"Your made a deposit of {AmountToDeposit} in your account. Your new balance is\t : {newBalance} ");
+                    Program.Message($"\n{AccountFullName}\t", $"Your made a deposit of {AmountToDeposit} in your account. Your new balance is\t : {newBalance} ");
                 }
                 else
                 {
-                    Welcome.Message("\nError:\t", "Try Again\n");
+                    Program.Message("\nError:\t", "Try Again\n");
                 }
             }
             catch (Exception errorException)
             {
 
-                Welcome.Message("\nError:\t", $"{errorException.Message}");
+                Program.Message("\nError:\t", $"{errorException.Message}");
                 return;
             }
         }
@@ -74,17 +74,17 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                 if (AccountNumber.Equals(DepositAccountNumber))
                 {
                     decimal newBalance = AccountBalance -= amountToWidthraw;
-                    Welcome.Message($"\n{AccountFullName}\t", $"Your just withdrawed {amountToWidthraw} from your account, your new balance is:\t {newBalance} ");
+                    Program.Message($"\n{AccountFullName}\t", $"Your just withdrawed {amountToWidthraw} from your account, your new balance is:\t {newBalance} ");
                 }
                 else
                 {
-                    Welcome.Message("\nError:\t", "Try Again\n");
+                    Program.Message("\nError:\t", "Try Again\n");
                 }
             }
             catch (Exception errorException)
             {
 
-                Welcome.Message("\nError:\t", $"{errorException.Message}");
+                Program.Message("\nError:\t", $"{errorException.Message}");
                 return;
             }
         }
@@ -118,14 +118,14 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                         currentUser.AccountBalance += AmountToTransfer;
                         SenderAccountBalance -= AmountToTransfer;
                         Console.WriteLine($"{SenderFullName} you just sent {AmountToTransfer} to {currentUser.FullName} and {AmountToTransfer} has been depisted from your account");
-                        Welcome.Message($"\n{SenderFullName} Your new balance is", $"{SenderAccountBalance}");
+                        Program.Message($"\n{SenderFullName} Your new balance is", $"{SenderAccountBalance}");
                     }
                     LoginValInEnglish.getUser(user, user.AccountNumber);
                 }
             }
             catch (Exception exception)
             {
-                Welcome.Message("\nError:", $"{exception.Message}");
+                Program.Message("\nError:", $"{exception.Message}");
 
             }
         }

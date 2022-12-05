@@ -7,7 +7,7 @@ namespace AtmConsoleAppInThreeLanguages.Languages
     {
         public static void CallIgboLanguageImplementations()
         {
-            Welcome.Message("\nDaalu", "Ezigbo mmadu\n\n");
+            Program.Message("\nDaalu", "Ezigbo mmadu\n\n");
             LoginValidationInIgbo Validation = new();
             Validation.LoginVal();
         }

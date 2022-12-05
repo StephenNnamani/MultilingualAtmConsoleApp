@@ -9,28 +9,19 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
         public static void ChooseTransactionType(string usersAccountName)
         {
 
-            Welcome.Message($"Welcome {usersAccountName}\n\t", "Put 1-3 \n");
-            Welcome.Message("\t\t1.\t", "Pick One for Deposit\n");
-            Welcome.Message("\t\t2.\t", "Shey nah withdrawal you won do\n");
-            Welcome.Message("\t\t3.\t", "Abi nah Transfer\n");
-            Welcome.Message("\t\t4.\t", "Or Abi nah Your Balance your won check\n");
+            Program.Message($"Welcome {usersAccountName}\n\t", "Put 1-3 \n");
+            Program.Message("\t\t1.\t", "Pick One for Deposit\n");
+            Program.Message("\t\t2.\t", "Shey nah withdrawal you won do\n");
+            Program.Message("\t\t3.\t", "Abi nah Transfer\n");
+            Program.Message("\t\t4.\t", "Or Abi nah Your Balance your won check\n");
 
         }
 
         public static void CheckBalance(decimal accountBalance, string userfullName)
         {
-            try
-            {
+    
                 Console.WriteLine($"{userfullName} Gee your new balance nah {accountBalance}");
-
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-            }
-
+        
         }
 
         public static void Deposit(int AccountNumber, decimal AccountBalance, string AccountFullName)
@@ -42,12 +33,12 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                 Console.WriteLine("Gee put Amount");
                 int AmountToDeposit = Convert.ToInt32(Console.ReadLine());
                     decimal newBalance = AccountBalance + AmountToDeposit;
-                    Welcome.Message($"\n{AccountFullName}\t", $"You deposited {AmountToDeposit} in your account. Your new balance nah\t : {newBalance} ");
+                Program.Message($"\n{AccountFullName}\t", $"You deposited {AmountToDeposit} in your account. Your new balance nah\t : {newBalance} ");
             }
             catch (Exception errorException)
             {
 
-                Welcome.Message("\nError:\t", $"{errorException.Message}");
+                Program.Message("\nError:\t", $"{errorException.Message}");
                 return;
             }
         }
@@ -60,12 +51,12 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                 Console.WriteLine("Enter Amount");
                 int amountToWidthraw = Convert.ToInt32(Console.ReadLine());
                     decimal newBalance = AccountBalance -= amountToWidthraw;
-                    Welcome.Message($"\n{AccountFullName}\t", $"You just removed {amountToWidthraw} for your account, your new balance nah:\t {newBalance} ");
+                Program.Message($"\n{AccountFullName}\t", $"You just removed {amountToWidthraw} for your account, your new balance nah:\t {newBalance} ");
             }
             catch (Exception errorException)
             {
 
-                Welcome.Message("\nError:\t", $"{errorException.Message}");
+                Program.Message("\nError:\t", $"{errorException.Message}");
                 return;
             }
         }
@@ -99,14 +90,14 @@ namespace AtmConsoleAppInThreeLanguages.Transactions
                         currentUser.AccountBalance += AmountToTransfer;
                         SenderAccountBalance -= AmountToTransfer;
                         Console.WriteLine($"{SenderFullName} you sent {AmountToTransfer} to {currentUser.FullName} and we don remove {AmountToTransfer} for your account");
-                        Welcome.Message($"\n{SenderFullName} Your new balance nah", $"{SenderAccountBalance}");
+                        Program.Message($"\n{SenderFullName} Your new balance nah", $"{SenderAccountBalance}");
                     }
                     LoginValidationInPidgin.getUser(user, user.AccountNumber);
                 }
             }
             catch (Exception exception)
             {
-                Welcome.Message("\nProblem:", $"{exception.Message}");
+                Program.Message("\nProblem:", $"{exception.Message}");
 
             }
         }

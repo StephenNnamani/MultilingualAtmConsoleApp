@@ -61,10 +61,10 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
                 try
                 {
-                    Welcome.Message("\nAbeg:\t", "Wire me your details gee\n");
-                    Welcome.Message("\nAbeg:\t", "Put Your account number\n");
+                Program.Message("\nAbeg:\t", "Wire me your details gee\n");
+                Program.Message("\nAbeg:\t", "Put Your account number\n");
                     _userAccountNumberInput = int.Parse(Console.ReadLine());
-                    Welcome.Message("\nAbeg:\t", "Put your CardPin\n");
+                Program.Message("\nAbeg:\t", "Put your CardPin\n");
                     _userCardPin = int.Parse(Console.ReadLine());
 
                     foreach (var account in _userAccountList)
@@ -90,7 +90,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                 catch (Exception exception)
                 {
                     Console.Clear();
-                    Welcome.Message("\nAbeg:\t", "Put a better thing nah\n");
+                Program.Message("\nAbeg:\t", "Put a better thing nah\n");
                     Console.WriteLine(exception.Message);
                     LoginVal();
                 }
@@ -129,7 +129,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                 }
                 catch (Exception exception)
                 {
-                    Welcome.Message("\nError:\t", exception.Message);
+                Program.Message("\nError:\t", exception.Message);
                 }
             }
 
