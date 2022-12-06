@@ -18,6 +18,7 @@ internal class Program
     /// Working with delegates. Creating function that will handle the event methods by consoling loging the result;
     /// </summary>
     /// <param name="message"></param>
+    /// 
     public static void HandleErrorMessages(string message)
     {
         Console.WriteLine(message);
