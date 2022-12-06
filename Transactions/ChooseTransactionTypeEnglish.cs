@@ -69,33 +69,22 @@ start:
 
                 Console.WriteLine("Enter Amount");
                 int amountToWidthraw = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter Your Account Number");
-
-                int DepositAccountNumber = Convert.ToInt32(Console.ReadLine());
-                if (AccountNumber.Equals(DepositAccountNumber))
-                {
                     decimal newBalance = AccountBalance -= amountToWidthraw;
                     Program.Message($"\n{AccountFullName}\t", $"Your just withdrawed {amountToWidthraw} from your account, your new balance is:\t {newBalance} ");
-                }
-                else
-                {
-                    Program.Message("\nError:\t", "Try Again\n");
-                }
             }
             catch (Exception errorException)
             {
-
                 Program.Message("\nError:\t", $"{errorException.Message}");
                 goto begining;
             }
         }
 
-        public static void Transfer(string SenderFullName, decimal SenderAccountBalance, int SenderAccountNumber)
+        public static void Transfer(string SenderFullName, int SenderAccountNumber, decimal SenderAccountBalance)
         {
             theBegining:
             try
             {
-                LoginValInEnglish loginValidation = new LoginValInEnglish();
+                LoginValInEnglish loginValidation = new ();
                 var account = loginValidation._userAccountList;
                 foreach (var user in account)
                 {
@@ -106,7 +95,7 @@ start:
                     Console.WriteLine("Enter Your Account Number");
 
                     int ReceiverAccountNumberInput = Convert.ToInt32(Console.ReadLine());
-                    var currentUser = account.FirstOrDefault(specificUser => specificUser.AccountNumber == ReceiverAccountNumberInput);
+                    var currentUser = account.First(specificUser => specificUser.AccountNumber == ReceiverAccountNumberInput);
                     if (SenderAccountNumber == currentUser.AccountNumber)
                     {
                         Console.WriteLine("You Cannot Transfer money to your self");
@@ -122,7 +111,7 @@ start:
                         Console.WriteLine($"{SenderFullName} you just sent {AmountToTransfer} to {currentUser.FullName} and {AmountToTransfer} has been depisted from your account");
                         Program.Message($"\n{SenderFullName} Your new balance is", $"{SenderAccountBalance}");
                     }
-                    LoginValInEnglish.getUser(user, user.AccountNumber);
+                    LoginValInEnglish.GetUser(user, user.AccountNumber);
                 }
             }
             catch (Exception exception)

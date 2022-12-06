@@ -5,8 +5,15 @@ using AtmConsoleAppInThreeLanguages.Transactions;
 
 namespace AtmConsoleAppInThreeLanguages.Implementations
 {
+
     internal class LoginValInEnglish
     {
+        /// <summary>
+        /// Action Event declaration
+        /// </summary>
+    private event Action<string> ErrorMessage;
+    private event Action<string> SuccessMessage;
+
         public List<UserAccount> _userAccountList;
         private int _userAccountNumberInput;
         private int _userCardPin;
@@ -16,9 +23,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         /// <summary>
         /// Action delegates for printing messages to user
         /// </summary>
-        private event Action<string>? ErrorMessage;
-        private event Action<string>? SuccessMessage;
-
+    
 
         public LoginValInEnglish()
         {
@@ -64,6 +69,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
 
         public void LoginVal()
         {
+            LoginValInEnglish ValEnglish = new();
 
             try
             {
@@ -78,6 +84,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                 {
                     Console.Clear();
                     Program.Message("\nError:\t", "User does'nt Exist");
+                    ValEnglish.OnError($"Error Message from Action custom delegate");
                     LoginVal();
                 }
                 if (unicUser?.CardPin != _userCardPin)
@@ -87,13 +94,14 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                 }
                 while (true)
                 {
-                    getUser(unicUser, unicUser.AccountNumber);
+                    GetUser(unicUser, unicUser.AccountNumber);
                     break;
                 }
             }
             catch (Exception exception)
             {
                 Console.Clear();
+                ValEnglish.OnError($"Error Message from Action custom delegate");
                 Program.Message("\nPlease:\t", "Enter A valid inputs\n");
                 Console.WriteLine(exception.Message);
                 LoginVal();
@@ -101,7 +109,7 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
         }
 
 
-        public static void getUser(UserAccount account, int userAccountNumber)
+        public static void GetUser(UserAccount account, int userAccountNumber)
         {
             LoginValInEnglish ValEnglish = new();
 
@@ -122,28 +130,29 @@ namespace AtmConsoleAppInThreeLanguages.Implementations
                         ChooseTransactionTypeEnglish.Withdrawal(userAccountNumber, account.AccountBalance, account.FullName);
                         break;
                     case (int)TransactionType.Transfer:
-                        ChooseTransactionTypeEnglish.Transfer(account.FullName, account.AccountBalance, account.AccountNumber);
+                        ChooseTransactionTypeEnglish.Transfer(account.FullName, account.AccountNumber, account.AccountBalance);
                         break;
                     case (int)TransactionType.CheckBalance:
                         ChooseTransactionTypeEnglish.CheckBalance(account.AccountBalance, account.FullName);
                         break;
                     default:
-                        /*Console.WriteLine("Entered value is not in the case");*/
-                        ValEnglish.OnError("Error Message from Action custom delegate");
-                        break;
+                        ValEnglish.OnError($"Error Message from Action custom delegate{account}");
+                        Console.Clear();
+                        Console.WriteLine("Entered value is not in the case");
+                        goto start;
                 }
 
             }
             catch (Exception exception)
             {
-                Program.Message("\nError:\t", exception.Message);
                 ValEnglish.OnError("Error Message from Action custom delegate");
+                Program.Message("\nError:\t", $"{exception.Message} Here Men");
                 goto start;
-            }
-        }
+            }       
 
+        }
         public void LogError(Action<string> method) => ErrorMessage += method;
 
-        public void OnError(string message) => ErrorMessage(message);
+        public void OnError(string message) => ErrorMessage?.Invoke(message);
     }
 }

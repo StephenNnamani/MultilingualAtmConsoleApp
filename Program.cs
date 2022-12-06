@@ -27,7 +27,6 @@ internal class Program
     public static void Message(string MessageTitle, string Message)
     {
         Console.Write(MessageTitle); Console.Write(Message);
-
     }
 
     public static void RunWelcome()
@@ -35,7 +34,7 @@ internal class Program
         LoginValInEnglish englishLanguage = new();
         englishLanguage.LogError(HandleErrorMessages);
         _consoleTitle = "Kellys Atm Machine";
-        _welcomeMessage = "\n\n******Welcome to Kellyncodes Atm Machine. *******\n\n";
+        _welcomeMessage = "\n******Welcome to Kellyncodes Atm Machine. *******\n";
         Console.Title = _consoleTitle;
         Console.WriteLine(_welcomeMessage);
         ChooseLanguage();
@@ -52,6 +51,7 @@ internal class Program
         {
 
             string userChoice = Console.ReadLine() ?? string.Empty;
+            
             int userTransactionChoice = Convert.ToInt32(userChoice);
             if (userTransactionChoice > (int)TransactionType.NumberOfItemsInTheList)
             {
